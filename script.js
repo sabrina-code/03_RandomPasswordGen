@@ -2,10 +2,13 @@
 
 var charType = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz","0123456789","@#$%^&(){}[]|/~+=*|"];
 var typeSelected = [];
-var password = [];
+
 
 //Select Charactrer Type:
 function generate(){
+
+var password = [];
+
 upperC = confirm("UPPERCASE: Include uppercase characters for your password?");
 
 if (upperC){
@@ -47,6 +50,7 @@ while (isNaN(pLen)){
 //generate a password according to selection
 for (var i = 0; i < pLen; i++){
   password = password + typeSelected.charAt(Math.floor(Math.random() * Math.floor(typeSelected.length+1)));
+
 //display password
 document.getElementById("display").value = password;
 }
@@ -59,3 +63,9 @@ function copyToClipboard(){
   document.execCommand("copy");
   alert("Password copied to clipboard: "+ password );
 }
+
+  //reset textarea
+  function clearTextarea(){
+  var form = document.getElementById("display");
+  form.reset();
+  }
