@@ -42,17 +42,12 @@ if (pLen==null){
 }else{
 pLen=parseInt(pLen);
 
-while (isNaN(pLen)){
+while ((pLen < 8 || pLen > 128) || isNaN(pLen)){
       pLen = prompt("Please enter a number from 8 t0 128", ''); 
       pLen=parseInt(pLen);
       continue;
-    }while (pLen < 8 || pLen > 128 || isNaN(pLen)){
-      pLen = prompt("Please enter a number from 8 t0 128", ''); 
-      pLen=parseInt(pLen);
-      continue;
-    }
   }
-  
+} 
 //generate a password according to selection
 for (var i = 0; i < pLen; i++){
   password = password + typeSelected.charAt(Math.floor(Math.random() * Math.floor(typeSelected.length+1)));
