@@ -37,18 +37,22 @@ var typeSelected = [];
   
 //Check input type and value
 var pLen = prompt("The password can contain 8 to 128 characters. Please enter a number from 8 t0 128", ''); 
+if (pLen===null){
+  return;
+}else{
 pLen=parseInt(pLen);
 
 while (isNaN(pLen)){
-      pLen = prompt("Please enter a number from 8 t0 128", ''); 
+      if (pLen = prompt("Please enter a number from 8 t0 128", '')!==null); 
       pLen=parseInt(pLen);
       continue;
     }while (pLen < 8 || pLen > 128 || isNaN(pLen)){
-      pLen = prompt("Please enter a number from 8 t0 128", ''); 
+      pLen = prompt("Please enter a number from 8 t0 128", '');
       pLen=parseInt(pLen);
       continue;
     }
-
+  }
+  
 //generate a password according to selection
 for (var i = 0; i < pLen; i++){
   password = password + typeSelected.charAt(Math.floor(Math.random() * Math.floor(typeSelected.length+1)));
