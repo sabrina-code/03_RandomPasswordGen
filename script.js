@@ -40,7 +40,7 @@ var typeSelected = [];
 var pLen = prompt("The password can contain 8 to 128 characters. Please enter a number from 8 t0 128", ''); 
 pLen=parseInt(pLen);
 
-while (isNaN(pLen)){
+while (isNaN(pLen)&&(pLan!==null)){
       pLen = prompt("Please enter a number from 8 t0 128", ''); 
       pLen=parseInt(pLen);
       continue;
