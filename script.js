@@ -44,8 +44,12 @@ pLen=parseInt(pLen);
 
 while ((pLen < 8 || pLen > 128) || isNaN(pLen)){
       pLen = prompt("Please enter a number from 8 t0 128", ''); 
+      if (pLen==null){
+        return;
+      }else{
       pLen=parseInt(pLen);
       continue;
+      }
   }
 } 
 //generate a password according to selection
