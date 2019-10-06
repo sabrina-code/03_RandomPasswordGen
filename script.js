@@ -1,37 +1,53 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 
 
 var charType = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz","0123456789","@#$%^&(){}[]|/~+=*|"];
-var typeSelected = [];
-
+var upperC;
+var lowerC;
+var numC;
+var specialC;
 
 //Select Charactrer Type:
 function generate(){
-
 var password = [];
+var typeSelected = [];
+  while (typeSelected.length==0){
+    upperC = confirm("UPPERCASE: Include uppercase characters for your password?");
+    if (upperC){
+      typeSelected = charType[0];
+      } 
 
-upperC = confirm("UPPERCASE: Include uppercase characters for your password?");
-
-if (upperC){
-  typeSelected = charType[0];
-  } 
-
-lowerC = confirm("LOWERCASE: Add lowercase characters for your password?");
-
-if (lowerC){
-typeSelected = typeSelected + charType[1];
-} 
-
-numC= confirm("NUMERICAL: Have numerical characters in your password?");
-
-if (numC){
-    typeSelected = typeSelected + charType[2];
+    lowerC = confirm("LOWERCASE: Add lowercase characters for your password?");
+    if (lowerC){
+    typeSelected = typeSelected + charType[1];
     } 
 
-specialC= confirm("SPECIAL: Would you like to have special characters in your password?");
+    numC= confirm("NUMERICAL: Have numerical characters in your password?");
+    if (numC){
+        typeSelected = typeSelected + charType[2];
+        } 
 
-if (specialC){
-    typeSelected = typeSelected + charType[3];
-    } 
+    specialC= confirm("SPECIAL: Would you like to have special characters in your password?");
+    if (specialC){
+        typeSelected = typeSelected + charType[3];
+        } 
+
+    if (typeSelected.length==0){
+    alert("At least one type of characters has to be selected.");
+    continue;
+    }
+  }
+  
 
 //Check input type and value
 var pLen = prompt("The password can contain 8 to 128 characters. Please enter a number from 8 t0 128", ''); 
@@ -41,7 +57,7 @@ while (isNaN(pLen)){
       pLen = prompt("Please enter a number from 8 t0 128", ''); 
       pLen=parseInt(pLen);
       continue;
-    }while (pLen <8 || pLen >128 || isNaN(pLen)){
+    }while (pLen < 8 || pLen > 128 || isNaN(pLen)){
       pLen = prompt("Please enter a number from 8 t0 128", ''); 
       pLen=parseInt(pLen);
       continue;
@@ -50,12 +66,11 @@ while (isNaN(pLen)){
 //generate a password according to selection
 for (var i = 0; i < pLen; i++){
   password = password + typeSelected.charAt(Math.floor(Math.random() * Math.floor(typeSelected.length+1)));
-
-//display password
-document.getElementById("display").value = password;
+  //display password
+  document.getElementById("display").value = password;
+} 
 }
 
-}
 //copy password to clipboard
 function copyToClipboard(){
   var password = document.getElementById("display").value;
@@ -63,9 +78,3 @@ function copyToClipboard(){
   document.execCommand("copy");
   alert("Password copied to clipboard: "+ password );
 }
-
-  //reset textarea
-  function clearTextarea(){
-  var form = document.getElementById("display");
-  form.reset();
-  }
